@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+    <!-- <script>
+        var app2 = new Vue({
+            el: '#ls',
+                data: {
+                title: "Page Loader Info",
+                message: 'random user info ' + 
+                    function () {
+                        fetch('https://randomuser.me/api')
+                      .then(response => response.json())
+                        .then(data => console.log(data))
+                    }
+        }
+        });
+    </script> -->
+
+
+
+    <div id="pg_load">
+        <h1>{{ title }}</h1>
+        <h2> {{ message }} </h2>
+    </div>
+    <script>
+        var app3 = new Vue({
+            el: '#pg_load',
+                data: {
+                title: "Page Loader Info",
+                message: 'You loaded this page on ' + new Date().toLocaleString()
+        }
+        });
+    </script>
+
+    <div id="simple_list">
+        <h1>{{ title }}</h1>
+        <ul>
+            <li v-for="item in message">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+    <script>
+    var app = new Vue({
+        el: '#simple_list',
+        data: {
+            title: "This is the title",
+            message: ['Hello Vue!', 'this is a msg', 'now we are done']
+        }
+    });
+    </script>
+
+    <!-- <script>
+
+    new Vue.component(        {
+    name: "get-request-async-await",
+        data() {
+        return {
+            totalVuePackages: null
+        };
+        },
+        created() {
+        // GET request using fetch with async/await
+        const response = fetch("https://api.npms.io/v2/search?q=vue");
+        const data = response.json();
+        this.totalVuePackages = data.total;
+        }
+        })
+    ;
+    </script> -->
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/style.css" /> -->
+  </head>
+  <body>
+      <v-if=myHaveResponse>
+        <div id="demo">
+          <h1>{{ myResponse.results[0].location.country }}</h1>
+          <p>{{ myResponse.results[0] }}</p>
+      </div>
+    </v-if>
+
+    <script>
+      var apiURL = "https://randomuser.me/api";
+      var demo = new Vue({
+
+        el: "#demo",
+
+        data: {
+          myResponse: ["test"],
+          myHaveResponse : false
+        },
+
+        created: function () {
+          this.fetchData();
+        },
+
+        methods: {
+          fetchData: function () {
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.open("GET", apiURL);
+            xhr.onload = function () {
+              console.log("fetched");
+              self.myResponse = JSON.parse(xhr.responseText);
+              self.myHaveResponse = true
+              console.log(self.myResponse);
+            };
+            xhr.send();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

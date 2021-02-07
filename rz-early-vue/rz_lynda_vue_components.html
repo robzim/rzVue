@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<script src="vue.js"></script>
+
+<div id="app">
+    <div class="container">
+        <H1>TEST</H1>
+        <my-component v-for="i in 10"></my-component>
+
+    </div>
+</div>
+
+
+
+<script>
+    Vue.component('my-component', {
+        template: '<strong> static </strong>'
+    });
+</script>
+<script>
+    var vm = new Vue(
+        { el: '#app' }
+    );
+</script>

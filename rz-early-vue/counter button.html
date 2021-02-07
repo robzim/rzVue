@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<script src="vue.js"></script>
+
+<script>
+// Define a new component called button-counter
+</script>
+
+
+<body>
+
+<div id="app">
+  <h1>{{ message }}</h1>
+  <p><input v-model="message"></p>
+</div>
+
+
+<div id="app-2">
+    <span v-bind:title="message">
+      Hover your mouse over me for a few seconds
+      to see my dynamically bound title!
+    </span>
+</div>
+
+<div id="app-3">
+    <span>
+        <p v-if="seen">Now you see me</p>
+        <p v-if="!seen">Now you don't</p>
+    </span>
+</div>
+
+<p>
+    <button id= "sh" onclick="myHideFunc()">Hide it!</button>
+</p>
+
+
+<div id="components-demo">
+    <button-counter>
+
+    </button-counter>
+    
+</div>
+
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<p>
+    <button onclick="myFunc()">Click Me!</button>
+</p>
+
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+  <p><input v-model="toadd"></p>
+  <button id= "toaddbutton" onclick="myAddFunc()">Add to list!</button>
+</div>
+
+
+
+<script>
+
+var myObject = new Vue({
+  el: '#app',
+  data: {message: 'Hello Vue!'}
+});
+
+
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'You loaded this page on ' + new Date().toLocaleString()
+  }
+});
+
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+});
+
+
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    toadd: 'some stuff',
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]},
+    methods: {
+      myAddFunc: function () {
+      app4.todos.push({ text: toadd.text })
+  }
+
+  }
+  
+});
+
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+});
+
+
+
+function myFunc() {
+    myObject.message = "fffff";
+}
+
+function myHideFunc() {
+    app3.seen = false;
+    document.getElementById('sh').innerHTML = 'Show it!'
+}
+
+
+
+function myShowFunc() {
+    app3.seen = true;
+}
+
+Vue.component('button-counter', {
+    data: function () {
+      return {
+        count: 0
+      }
+    },
+    template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  });
+
+new Vue({ el: '#components-demo' })
+</script>
+  
+
+
+
+</body>
+</html>

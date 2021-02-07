@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script src="vue.js"></script>
+</head>
+    <body>
+        <div id="components-demo">
+            <button-counter></button-counter>
+            <br>
+            <web-test></web-test>
+          </div>
+        <script>
+        Vue.component('button-counter', {
+            data: function () {
+            return {
+                count: 0
+            }
+            },
+            template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        });
+
+
+        Vue.component('web-test', {
+            data: function () {
+                return {
+                    fetchdata: "none"
+                }
+            },
+            methods: {
+                myFetcher: function myFetchTheURL () {
+                    fetch('https://randomuser.me/api')
+                  .then(response => response.json())
+                    .then(jsondata => jsondata.results[0])
+                    .then(fetchresults => {
+                            console.log(fetchresults);
+                            console.log(fetchresults.picture);
+                            this.myPic = fetchresults.picture.medium;
+                            console.log(this.myPic);
+                            testVar = this.myPic;
+                        })
+                        .then(fetchdata => { fetchdata: "xyz123" })
+                }
+            },
+            // mounted: {
+            //     myFetchTheURL
+            // },
+            computed: {
+                webresults: function () {
+                    return self.fetchdata;
+                }
+            },
+            template: '<p>   {{ fetchdata }} {{ webresults }}</p>'
+        });
+
+            new Vue({ el: '#components-demo' });
+        </script>
+    </body>
+</html>
+
